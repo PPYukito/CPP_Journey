@@ -1,0 +1,64 @@
+# ===========================================================================
+# Build output (CMake). Everything here can be regenerated, so never commit it.
+# Matches a "build" folder at any depth, so each sub-project is covered too.
+# ===========================================================================
+build/
+build-*/
+out/
+cmake-build-*/
+_deps/
+
+# Files CMake may write next to the source when run in the wrong folder
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CMakeUserPresets.json
+compile_commands.json
+
+# ===========================================================================
+# Compiled files (in case anything gets built outside a build folder)
+# Note: *.obj is NOT ignored, because .obj is also a 3D model format.
+# ===========================================================================
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.exp
+*.o
+
+# ===========================================================================
+# Visual Studio
+# ===========================================================================
+.vs/
+*.user
+*.suo
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+*.ipch
+
+# ===========================================================================
+# VS Code: share project setup (settings, launch, tasks), ignore the rest
+# ===========================================================================
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+.history/
+
+# ===========================================================================
+# Art tool backups and temp files
+# ===========================================================================
+*.blend1
+*.blend2
+*.tmp
+*.bak
+~$*
+
+# ===========================================================================
+# Operating system junk
+# ===========================================================================
+Thumbs.db
+desktop.ini
+.DS_Store
