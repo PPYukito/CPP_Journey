@@ -4,7 +4,7 @@
 
 void JustMoveCircle::Initialize()
 {
-    circlePos = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
+    m_CirclePos = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
 }
 
 void JustMoveCircle::Finalize()
@@ -37,8 +37,8 @@ void JustMoveCircle::Update(float deltaTime)
     }
 
     travelDir = Vector2Normalize(travelDir);
-    circlePos.x += travelDir.x * circleSpeed * deltaTime;
-    circlePos.y += travelDir.y * circleSpeed * deltaTime;
+    m_CirclePos.x += travelDir.x * m_CircleSpeed * deltaTime;
+    m_CirclePos.y += travelDir.y * m_CircleSpeed * deltaTime;
 }
 
 void JustMoveCircle::Draw()
@@ -46,5 +46,5 @@ void JustMoveCircle::Draw()
     ClearBackground(WHITE);
 
     // Position => The position will be the center of the circle.
-    DrawCircleV(circlePos, 50.0f, GREEN);
+    DrawCircleV(m_CirclePos, 50.0f, GREEN);
 }

@@ -8,8 +8,8 @@ class JustMoveCircle : public Scene
 {
 
 private:
-    Vector2 circlePos {640, 360};
-    float circleSpeed = 300.0f;
+    Vector2 m_CirclePos {640, 360};
+    float m_CircleSpeed = 300.0f;
 
 public:
     void Initialize() override;
