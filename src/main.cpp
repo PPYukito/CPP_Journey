@@ -4,6 +4,7 @@
 #include "Core/Config.h"
 
 #include "Games/JustMoveCircle/JustMoveCircle.h"
+#include "Games/PingpongBurst/PingpongBurstScene.h"
 
 int main()
 {
@@ -12,7 +13,7 @@ int main()
     SetTargetFPS(Config::TargetFPS);
 
     // Create scene
-    std::unique_ptr<Scene> currentScene = std::make_unique<JustMoveCircle>();
+    std::unique_ptr<Scene> currentScene = std::make_unique<PingpongBurstScene>();
     currentScene->Initialize();
 
     #pragma region Game Loop

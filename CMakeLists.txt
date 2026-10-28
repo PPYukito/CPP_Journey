@@ -20,6 +20,7 @@ FetchContent_MakeAvailable(raylib)
 add_executable(${PROJECT_NAME}
     src/main.cpp
     src/Games/JustMoveCircle/JustMoveCircle.cpp
+    src/Games/PingpongBurst/PingpongBurstScene.cpp
 )
 
 # 3. Link raylib 
