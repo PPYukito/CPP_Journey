@@ -17,7 +17,10 @@ set(BUILD_EXAMPLES OFF CACHE INTERNAL "")
 FetchContent_MakeAvailable(raylib)
 
 # 2. Add your source files
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME}
+    src/main.cpp
+    src/Games/JustMoveCircle/JustMoveCircle.cpp
+)
 
 # 3. Link raylib 
 # CMake automatically maps all headers and OS-specific graphics pipelines!
