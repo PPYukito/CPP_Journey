@@ -1,0 +1,38 @@
+#include "Paddle.h"
+
+#include "../../../Core/Config.h"
+
+Paddle::Paddle(float posX, float posY, float width, float height, float speed) : m_Rect{ posX, posY, width, height }, m_Speed{ speed }
+{
+
+}
+
+void Paddle::Move(float deltaTime)
+{
+    #pragma region Player Controller
+    if (IsKeyDown(KEY_W))
+    {
+        m_Rect.y -= m_Speed * deltaTime;
+    }
+    if (IsKeyDown(KEY_S))
+    {
+        m_Rect.y += m_Speed * deltaTime;
+    }
+    #pragma endregion
+
+    LimitInScreen();
+}
+
+void Paddle::LimitInScreen()
+{
+    // Check for Player
+    if ( m_Rect.y < 0)
+        m_Rect.y = 0;
+    else if (m_Rect.y > Config::ScreenHeight - m_Rect.height)
+        m_Rect.y = Config::ScreenHeight - m_Rect.height;
+}
+
+void Paddle::Draw()
+{
+    DrawRectangle(m_Rect.x, m_Rect.y, m_Rect.width, m_Rect.height, WHITE);
+}

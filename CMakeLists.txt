@@ -21,6 +21,7 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/Games/JustMoveCircle/JustMoveCircle.cpp
     src/Games/PingpongBurst/PingpongBurstScene.cpp
+    src/Games/PingpongBurst/Paddles/Paddle.cpp
 )
 
 # 3. Link raylib 
