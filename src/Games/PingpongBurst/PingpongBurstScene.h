@@ -3,7 +3,8 @@
 #include "../../Core/Scene.h"
 
 #include <raylib.h>
-#include "Paddles/Paddle.h"
+#include "Paddles/Player/Player.h"
+#include "Paddles/Enemy/Enemy.h"
 
 class PingpongBurstScene : public Scene
 {
@@ -19,8 +20,8 @@ private:
 
     static constexpr float k_PlayerPosX = 80.0f;
 
-    Paddle Player;
-    Paddle AIPlayer;
+    Player  PlayerPaddle;
+    Enemy   AIPlayer;
 
 public:
     void Initialize() override;

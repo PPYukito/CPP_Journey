@@ -6,17 +6,18 @@ class Paddle
 {
 
 private:
+    void LimitInScreen();
+
+protected:
     Rectangle m_Rect {};
-    //float m_Height;
     float m_Speed = 0;
 
-    void LimitInScreen();
-    
+    void Move(float posY);
+
 public:
     Paddle() = default;
     Paddle(float posX, float posY, float width, float height, float speed);
     
-    void Move(float deltaTime);
     void Draw();
 
 };

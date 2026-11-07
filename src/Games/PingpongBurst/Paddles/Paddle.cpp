@@ -7,18 +7,9 @@ Paddle::Paddle(float posX, float posY, float width, float height, float speed) :
 
 }
 
-void Paddle::Move(float deltaTime)
+void Paddle::Move(float posY)
 {
-    #pragma region Player Controller
-    if (IsKeyDown(KEY_W))
-    {
-        m_Rect.y -= m_Speed * deltaTime;
-    }
-    if (IsKeyDown(KEY_S))
-    {
-        m_Rect.y += m_Speed * deltaTime;
-    }
-    #pragma endregion
+    m_Rect.y = posY;
 
     LimitInScreen();
 }
