@@ -3,6 +3,7 @@
 
 #include "Core/Config.h"
 
+// Scenes & Games
 #include "Games/JustMoveCircle/JustMoveCircle.h"
 #include "Games/PingpongBurst/PingpongBurstScene.h"
 

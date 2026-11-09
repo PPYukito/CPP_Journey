@@ -7,6 +7,6 @@ class Player : public Paddle
 
 public:
     using Paddle::Paddle;
-    void Update(float deltatime);
+    void Update(float deltaTime);
 
 };
