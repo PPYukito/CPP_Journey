@@ -10,9 +10,12 @@ private:
     Vector2 m_Position {};
     Vector2 m_Velocity { 1, 1 };
     float m_Radius = 20.0f;
-    float m_Speed = 200.0f;
+    float m_Speed = 300.0f;
 
     bool m_IsPlaying = false;
+
+    void MoveBall(float deltaTime);
+    void LimitInScreen();
 
 public:
     Ball() = default;
@@ -23,6 +26,6 @@ public:
     void Update(float deltaTime);
     void Draw();
 
-    void PlayOff();
+    void SetPlay(bool play);
 
 };

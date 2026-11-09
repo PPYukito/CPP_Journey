@@ -24,7 +24,7 @@ void PingpongBurstScene::Update(float deltaTime)
     if (IsKeyDown(KEY_SPACE))
     {
         if (m_Ball.IsPlaying() == false)
-            m_Ball.PlayOff();
+            m_Ball.SetPlay(true);
     }
 
     m_Ball.Update(deltaTime);
