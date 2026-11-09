@@ -30,7 +30,7 @@ void PingpongBurstScene::Update(float deltaTime)
     m_Ball.Update(deltaTime);
 
     m_PlayerPaddle.Update(deltaTime);
-    m_AIPlayer.Update(deltaTime);
+    m_AIPlayer.Update(deltaTime, m_Ball);
 }
 
 void PingpongBurstScene::Draw()

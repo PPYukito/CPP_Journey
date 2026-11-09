@@ -2,11 +2,17 @@
 
 #include "../Paddle.h"
 
+class Ball;
+
 class Enemy : public Paddle
 {
 
+private:
+    float m_DeadZone = 5.0f;
+
 public:
     using Paddle::Paddle;
-    void Update(float deltaTime);
+
+    void Update(float deltaTime, const Ball& ball);
 
 };

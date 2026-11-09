@@ -15,13 +15,15 @@ private:
     bool m_IsPlaying = false;
 
     void MoveBall(float deltaTime);
-    void LimitInScreen();
+    void BounceOffWalls();
 
 public:
     Ball() = default;
     Ball(float posX, float posY);
 
     bool IsPlaying() const { return m_IsPlaying; }
+    Vector2 GetPosition() const { return m_Position; }
+    Vector2 GetVelocity() const { return m_Velocity; }
 
     void Update(float deltaTime);
     void Draw();

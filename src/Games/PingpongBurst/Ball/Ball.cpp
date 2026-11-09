@@ -17,7 +17,7 @@ void Ball::MoveBall(float deltaTime)
     m_Position = direction;
 }
 
-void Ball::LimitInScreen()
+void Ball::BounceOffWalls()
 {
     // Bottom
     if (m_Position.y + m_Radius >= Config::ScreenHeight)
@@ -52,7 +52,7 @@ void Ball::Update(float deltaTime)
         return;
 
     MoveBall(deltaTime);
-    LimitInScreen();
+    BounceOffWalls();
 }
 
 void Ball::Draw()
