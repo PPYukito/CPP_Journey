@@ -1,7 +1,7 @@
 #include "Ball.h"
 
 #include <raymath.h>
-#include "../../../Core/Config.h"
+
 
 Ball::Ball(float posX, float posY) : m_Position { posX, posY }
 {
@@ -17,50 +17,55 @@ void Ball::MoveBall(float deltaTime)
     m_Position = direction;
 }
 
-void Ball::BounceOffWalls()
+void Ball::CheckWalls()
 {
     // Bottom
-    if (m_Position.y + m_Radius >= Config::ScreenHeight)
+    if (m_Position.y > m_BottomLimit)
     {
-        m_Position.y = Config::ScreenHeight - m_Radius;   // push back inside
-        m_Velocity.y *= -1;
+        BounceBack(m_BottomLimit, false);                        
     }
     // Top
-    else if (m_Position.y - m_Radius <= 0)
+    else if (m_Position.y < m_TopLimit)
     {
-        m_Position.y = m_Radius;                          // push back inside
-        m_Velocity.y *= -1;
+        BounceBack(m_TopLimit, false);
     }
 
     // Right
-    if (m_Position.x + m_Radius >= Config::ScreenWidth)
+    if (m_Position.x > m_RightLimit)
     {
-        m_Position.x = Config::ScreenWidth - m_Radius;   // push back inside
-        m_Velocity.x *= -1;
+        BounceBack(m_RightLimit, true);
     }
     // Left
-    else if (m_Position.x - m_Radius <= 0)
+    else if (m_Position.x < m_LeftLimit)
     {
-        m_Position.x = m_Radius;                          // push back inside
-        m_Velocity.x *= -1;
+        BounceBack(m_LeftLimit, true);
     }
+}
+
+void Ball::BounceBack(float limitedValue, bool xAxis)
+{
+    float overlap = (xAxis ? m_Position.x : m_Position.y) - limitedValue;
+    float backVector = overlap / (xAxis ? m_Velocity.x : m_Velocity.y);
+
+    m_Position.x -= m_Velocity.x * backVector;       // step back along the path...
+    m_Position.y -= m_Velocity.y * backVector;       
+    
+    (xAxis ? m_Velocity.x : m_Velocity.y) *= -1;
 }
 
 void Ball::Update(float deltaTime)
 {
-    if (m_IsPlaying == false)
-        return;
-
     MoveBall(deltaTime);
-    BounceOffWalls();
+    CheckWalls();
 }
 
 void Ball::Draw()
 {
-    DrawCircleV(m_Position, m_Radius, WHITE);
+    DrawCircleV(m_Position, m_Radius, m_Color);
 }
 
-void Ball::SetPlay(bool play)
+void Ball::BounceOffPaddle(const Rectangle& paddle)
 {
-    m_IsPlaying = play;
+    if (CheckCollisionCircleRec(m_Position, m_Radius, paddle))
+        m_Velocity.x *= -1;
 }

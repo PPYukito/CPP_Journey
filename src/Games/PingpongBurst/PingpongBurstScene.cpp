@@ -21,16 +21,25 @@ void PingpongBurstScene::Finalize()
 
 void PingpongBurstScene::Update(float deltaTime)
 {
-    if (IsKeyDown(KEY_SPACE))
+    // Hit play
+    if (IsKeyDown(KEY_SPACE) && m_IsPlaying == false)
     {
-        if (m_Ball.IsPlaying() == false)
-            m_Ball.SetPlay(true);
+        m_IsPlaying = true;
     }
 
-    m_Ball.Update(deltaTime);
+    if (m_IsPlaying == true)
+    {
+        // Human control
+        m_PlayerPaddle.Update(deltaTime);
+        
+        // Computer control
+        m_Ball.Update(deltaTime);
+        m_AIPlayer.Update(deltaTime, m_Ball);
 
-    m_PlayerPaddle.Update(deltaTime);
-    m_AIPlayer.Update(deltaTime, m_Ball);
+        // Bounce Ball off paddles
+        m_Ball.BounceOffPaddle(m_PlayerPaddle.GetRect());
+        m_Ball.BounceOffPaddle(m_AIPlayer.GetRect());
+    }
 }
 
 void PingpongBurstScene::Draw()
@@ -49,4 +58,3 @@ void PingpongBurstScene::Draw()
     // AI Player
     m_AIPlayer.Draw();
 }
-

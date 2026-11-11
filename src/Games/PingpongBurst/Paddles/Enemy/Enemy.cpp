@@ -1,6 +1,5 @@
 #include "Enemy.h"
 
-#include "../../../../Core/Config.h"
 #include "../../Ball/Ball.h"
 
 void Enemy::Update(float deltaTime, const Ball& ball)
@@ -16,11 +15,11 @@ void Enemy::Update(float deltaTime, const Ball& ball)
 
     if (ballY < paddleCenter - m_DeadZone)
     {
-        posY -= m_Speed * deltaTime;   // ball is above → go up
+        posY -= m_Speed * deltaTime;   // ball is above -> go up
     }
     else if (ballY > paddleCenter + m_DeadZone)
     {
-        posY += m_Speed * deltaTime;   // ball is below → go down
+        posY += m_Speed * deltaTime;   // ball is below -> go down
     }
 
     Move(posY);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <raylib.h>
+#include "../../../Core/Config.h"
 
 class Ball
 {
@@ -11,23 +12,29 @@ private:
     Vector2 m_Velocity { 1, 1 };
     float m_Radius = 20.0f;
     float m_Speed = 300.0f;
+    Color m_Color = YELLOW;
 
-    bool m_IsPlaying = false;
+    // Walls Details
+    float m_TopLimit = m_Radius;
+    float m_RightLimit = Config::ScreenWidth - m_Radius;
+    float m_BottomLimit = Config::ScreenHeight - m_Radius;
+    float m_LeftLimit = m_Radius;
 
     void MoveBall(float deltaTime);
-    void BounceOffWalls();
+    void CheckWalls();
+    void BounceBack(float limitedValue, bool xAxis);
 
 public:
     Ball() = default;
     Ball(float posX, float posY);
 
-    bool IsPlaying() const { return m_IsPlaying; }
-    Vector2 GetPosition() const { return m_Position; }
-    Vector2 GetVelocity() const { return m_Velocity; }
+    Vector2 GetPosition()   const { return m_Position; }
+    Vector2 GetVelocity()   const { return m_Velocity; }
+    float GetRadius()       const { return m_Radius; }
 
     void Update(float deltaTime);
     void Draw();
 
-    void SetPlay(bool play);
+    void BounceOffPaddle(const Rectangle& paddle);
 
 };
