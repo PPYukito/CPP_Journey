@@ -11,10 +11,10 @@ void Paddle::Move(float posY)
 {
     m_Rect.y = posY;
 
-    BounceOffWalls();
+    LimitWithinScreen();
 }
 
-void Paddle::BounceOffWalls()
+void Paddle::LimitWithinScreen()
 {
     if ( m_Rect.y < 0)
         m_Rect.y = 0;

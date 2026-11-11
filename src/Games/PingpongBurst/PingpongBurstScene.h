@@ -3,6 +3,7 @@
 #include "../../Core/Scene.h"
 
 #include <raylib.h>
+
 #include "Field/Field.h"
 #include "Ball/Ball.h"
 #include "Paddles/Player/Player.h"
@@ -31,6 +32,9 @@ private:
     // Players
     Player  m_PlayerPaddle;
     Enemy   m_AIPlayer;
+
+    int m_PlayerScore = 0;
+    int m_AIScore = 0;
 
 public:
     void Initialize() override;

@@ -8,7 +8,7 @@ class Enemy : public Paddle
 {
 
 private:
-    float m_DeadZone = 5.0f;
+    float m_DeadZone = 50.0f;
 
 public:
     using Paddle::Paddle;

@@ -22,27 +22,35 @@ void Ball::CheckWalls()
     // Bottom
     if (m_Position.y > m_BottomLimit)
     {
-        BounceBack(m_BottomLimit, false);                        
+        BounceOffWalls(m_BottomLimit, false);                        
     }
     // Top
     else if (m_Position.y < m_TopLimit)
     {
-        BounceBack(m_TopLimit, false);
+        BounceOffWalls(m_TopLimit, false);
     }
 
     // Right
     if (m_Position.x > m_RightLimit)
     {
-        BounceBack(m_RightLimit, true);
+        //BounceOffWalls(m_RightLimit, true);
+        if (!OnGoal)
+            return;
+
+        OnGoal(Goal::Player);
     }
     // Left
     else if (m_Position.x < m_LeftLimit)
     {
-        BounceBack(m_LeftLimit, true);
+        //BounceOffWalls(m_LeftLimit, true);
+        if (!OnGoal)
+            return;
+
+        OnGoal(Goal::AIPlayer);
     }
 }
 
-void Ball::BounceBack(float limitedValue, bool xAxis)
+void Ball::BounceOffWalls(float limitedValue, bool xAxis)
 {
     float overlap = (xAxis ? m_Position.x : m_Position.y) - limitedValue;
     float backVector = overlap / (xAxis ? m_Velocity.x : m_Velocity.y);
@@ -68,4 +76,10 @@ void Ball::BounceOffPaddle(const Rectangle& paddle)
 {
     if (CheckCollisionCircleRec(m_Position, m_Radius, paddle))
         m_Velocity.x *= -1;
+}
+
+void Ball::Reset()
+{
+    m_Position = Vector2{ Config::ScreenWidth / 2.0f, Config::ScreenHeight / 2.0f };
+    m_Velocity = Vector2Normalize(Vector2{ 1, 1 });
 }

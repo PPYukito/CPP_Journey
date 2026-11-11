@@ -6,7 +6,7 @@ class Paddle
 {
 
 private:
-    void BounceOffWalls();
+    void LimitWithinScreen();
 
 protected:
     Rectangle m_Rect {};

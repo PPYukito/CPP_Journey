@@ -1,7 +1,15 @@
 #pragma once
 
 #include <raylib.h>
+#include <functional>
 #include "../../../Core/Config.h"
+
+enum class Goal
+{
+    None,
+    Player,
+    AIPlayer
+};
 
 class Ball
 {
@@ -11,7 +19,7 @@ private:
     Vector2 m_Position {};
     Vector2 m_Velocity { 1, 1 };
     float m_Radius = 20.0f;
-    float m_Speed = 300.0f;
+    float m_Speed = 400.0f;
     Color m_Color = YELLOW;
 
     // Walls Details
@@ -22,7 +30,7 @@ private:
 
     void MoveBall(float deltaTime);
     void CheckWalls();
-    void BounceBack(float limitedValue, bool xAxis);
+    void BounceOffWalls(float limitedValue, bool xAxis);
 
 public:
     Ball() = default;
@@ -36,5 +44,7 @@ public:
     void Draw();
 
     void BounceOffPaddle(const Rectangle& paddle);
+    std::function<void(Goal)> OnGoal;
+    void Reset();
 
 };
