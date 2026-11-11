@@ -36,6 +36,8 @@ private:
     int m_PlayerScore = 0;
     int m_AIScore = 0;
 
+    void OnGoal(Goal goal);
+
 public:
     void Initialize() override;
     void Finalize() override;

@@ -6,19 +6,8 @@ void PingpongBurstScene::Initialize()
 {
     //m_CirclePos = Vector2{ Config::ScreenWidth / 2.0f, Config::ScreenHeight / 2.0f };
     m_Ball = Ball{ Config::ScreenWidth / 2.0f, Config::ScreenHeight / 2.0f };
-    m_Ball.OnGoal = [this](Goal goal)
-    {
-        if (goal == Goal::Player)
-            m_PlayerScore++;
-        else if (goal == Goal::AIPlayer)
-            m_AIScore++;
-
-        // Pause the game;
-        m_IsPlaying = false;
-
-        //reset the ball;
-        m_Ball.Reset();
-    };
+    // Subscribe goal function
+    m_Ball.OnGoal = [this](Goal goal) { OnGoal(goal); };
 
     float startHeight = (Config::ScreenHeight / 2.0f) - (k_PaddleHeight / 2.0f);
     m_PlayerPaddle = Player(k_PlayerPosX, startHeight, k_PaddleWidth, k_PaddleHeight, k_PaddleSpeed);
@@ -70,4 +59,19 @@ void PingpongBurstScene::Draw()
 
     // AI Player
     m_AIPlayer.Draw();
+}
+
+void PingpongBurstScene::OnGoal(Goal goal)
+{
+    if (goal == Goal::Player)
+        m_PlayerScore++;
+    else if (goal == Goal::AIPlayer)
+        m_AIScore++;
+
+    // Pause the game;
+    m_IsPlaying = false;
+
+    // Reset
+    m_Ball.Reset();
+    // many be reset players next?
 }
