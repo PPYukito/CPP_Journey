@@ -37,6 +37,7 @@ private:
     int m_AIScore = 0;
 
     void OnGoal(Goal goal);
+    void DrawScore();
 
 public:
     void Initialize() override;

@@ -48,6 +48,9 @@ void PingpongBurstScene::Draw()
 {
     ClearBackground(BLACK);
 
+    // Score
+    DrawScore();
+
     // Field
     m_Field.Draw();
 
@@ -74,4 +77,10 @@ void PingpongBurstScene::OnGoal(Goal goal)
     // Reset
     m_Ball.Reset();
     // many be reset players next?
+}
+
+void PingpongBurstScene::DrawScore()
+{
+    DrawText(TextFormat("%i", m_PlayerScore), Config::ScreenWidth / 4 - 20, 20, 80, WHITE);
+    DrawText(TextFormat("%i", m_AIScore), (3 * (Config::ScreenWidth / 4)) - 20, 20, 80, WHITE);
 }
