@@ -19,5 +19,6 @@ public:
     using Paddle::Paddle;
 
     void Update(float deltaTime, const Ball& ball);
+    virtual void Reset() override;
 
 };

@@ -19,7 +19,7 @@ private:
     Vector2 m_Position {};
     Vector2 m_Velocity { 1, 1 };
     float m_Radius = 20.0f;
-    float m_Speed = 400.0f;
+    float m_Speed = 450.0f;
     Color m_Color = YELLOW;
 
     // Walls Details

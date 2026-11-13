@@ -2,7 +2,7 @@
 
 #include "../../../Core/Config.h"
 
-Paddle::Paddle(float posX, float posY, float width, float height, float speed) : m_Rect{ posX, posY, width, height }, m_Speed{ speed }
+Paddle::Paddle(float posX, float posY, float width, float height, float speed) : m_StartPosition { posX, posY }, m_Rect{ posX, posY, width, height }, m_Speed{ speed }
 {
 
 }
@@ -26,4 +26,9 @@ void Paddle::Draw()
 {
     DrawRectangle(m_Rect.x, m_Rect.y, m_Rect.width, m_Rect.height, WHITE);
     //DrawRectangleRec(m_Rect, WHITE);
+}
+
+void Paddle::Reset()
+{
+    m_Rect.y = m_StartPosition.y;
 }

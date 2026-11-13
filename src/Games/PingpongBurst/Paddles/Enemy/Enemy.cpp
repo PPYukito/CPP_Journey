@@ -47,3 +47,11 @@ void Enemy::MoveToward(float deltaTime, float targetY)
 
     Move(posY);
 }
+
+void Enemy::Reset()
+{
+    Paddle::Reset();
+
+    m_IsBallComing = false;
+    m_AimOffset = 0;
+}

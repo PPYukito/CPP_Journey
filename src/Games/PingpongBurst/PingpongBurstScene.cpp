@@ -76,7 +76,8 @@ void PingpongBurstScene::OnGoal(Goal goal)
 
     // Reset
     m_Ball.Reset();
-    // many be reset players next?
+    m_PlayerPaddle.Reset();
+    m_AIPlayer.Reset();
 }
 
 void PingpongBurstScene::DrawScore()

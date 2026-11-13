@@ -6,6 +6,8 @@ class Paddle
 {
 
 private:
+    Vector2 m_StartPosition {};
+
     void LimitWithinScreen();
 
 protected:
@@ -21,5 +23,6 @@ public:
     Rectangle GetRect() const { return m_Rect; }
     
     void Draw();
+    virtual void Reset();
 
 };
