@@ -2,9 +2,10 @@
 
 #include "../../Core/Scene.h"
 
-#include <raylib.h>
+#include <memory>
 
 #include "Field/Field.h"
+#include "PowerUps/PowerUp.h"
 #include "Ball/Ball.h"
 #include "Paddles/Player/Player.h"
 #include "Paddles/Enemy/Enemy.h"
@@ -22,6 +23,9 @@ private:
     // Ball
     Ball m_Ball;
 
+    // Power Ups
+    std::unique_ptr<PowerUp> m_PowerUp = nullptr;
+
     // Player parameters
     static constexpr float k_PaddleSpeed = 300.0f;
     static constexpr float k_PaddleWidth = 20.0f;
@@ -38,6 +42,7 @@ private:
 
     void OnGoal(Goal goal);
     void DrawScore();
+    void SpawnPowerUp();
 
 public:
     void Initialize() override;

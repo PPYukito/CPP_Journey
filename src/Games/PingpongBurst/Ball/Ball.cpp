@@ -65,6 +65,9 @@ void Ball::Update(float deltaTime)
 {
     MoveBall(deltaTime);
     CheckWalls();
+
+    if (m_EffectIsApplying)
+        ApplyEffect(deltaTime);
 }
 
 void Ball::Draw()
@@ -102,8 +105,33 @@ void Ball::BounceOffPaddle(const Rectangle& paddle)
     m_Velocity.y = sinf(angle);
 }
 
+void Ball::ApplyEffect(float deltaTime)
+{
+    m_ElapsedTime += deltaTime;
+
+    if (m_ElapsedTime >= m_EffectDuration)
+    {
+        m_EffectIsApplying = false;
+    }
+}
+
+void Ball::ApplySpeed(float speed, float duration)
+{
+    m_Speed = speed;
+    m_EffectIsApplying = true;
+}
+
+void Ball::EffectOff()
+{
+    m_ElapsedTime = 0.0f;
+    m_Speed = k_OriginalSpeed;
+    m_EffectIsApplying = false;
+}
+
 void Ball::Reset()
 {
     m_Position = Vector2{ Config::ScreenWidth / 2.0f, Config::ScreenHeight / 2.0f };
     m_Velocity = Vector2Normalize(Vector2{ 1, 1 });
+
+    EffectOff();
 }
